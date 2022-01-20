@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-card tile="false">
+    <v-card>
       <v-tabs v-model="selectedTeam" background-color="primary" dark>
         <v-tab v-for="team in teams" :key="team.name">
           {{ team.name }}
@@ -35,6 +35,9 @@
         </v-tab-item>
       </v-tabs-items>
     </v-card>
+    <v-main>
+      <router-view/>
+    </v-main>
   </v-app>
 </template>
 
