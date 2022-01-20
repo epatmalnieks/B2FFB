@@ -1,42 +1,17 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
+    <v-tabs v-model="selectedTeam" background-color="primary" dark>
+      <v-tab v-for="team in teams" :key="team.name">
+        {{ team.name }}
+      </v-tab>
+    </v-tabs>
+    <v-tabs-items v-model="selectedTeam">
+      <v-tab-item v-for="team in teams" :key="team.name">
+        <v-card flat>
+          <v-card-text>{{ team.roster }}</v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs-items>
     <v-main>
       <router-view/>
     </v-main>
@@ -47,9 +22,25 @@
 
 export default {
   name: 'App',
-
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      selectedTeam: '',
+      tab: null,
+      teams: [
+        { name: 'Houston Colt .45s', roster: ' team 1 roster' },
+        { name: 'Brooklyn Dodgers', roster: ' name 1 roster' },
+        { name: 'Detroit Stars', roster: ' name 1 roster' },
+        { name: 'Zulu Cannibal Giants', roster: ' name 2 roster' },
+        { name: 'Boston Braves', roster: ' name 3 roster' },
+        { name: 'St. Louis Terriers', roster: ' name 4 roster' },
+        { name: 'Seattle Pilots', roster: ' name 5 roster' },
+        { name: 'Montreal Expos', roster: ' name 6 roster' },
+        { name: 'Chicago Brownbombers', roster: ' name 7 roster' },
+        { name: 'Washington Senators', roster: ' name 8 roster' },
+        { name: 'California Angels', roster: ' name 9 roster' },
+        { name: 'Atlanta BlackCrackers', roster: 'Tab 10 roster' },
+      ],
+    };
+  },
 };
 </script>
