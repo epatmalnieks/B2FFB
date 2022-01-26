@@ -12,7 +12,7 @@
           <v-col cols="4">
             <div class="d-flex justify-center align-center calculations">
               <div>
-                <p>Starting Salary Cap = $</p>
+                <p>Starting Salary Cap = ${{ team.startingSalaryCap }}</p>
                 <p>Salary Cap Remaining = $</p>
                 <p>Total Player Salary = $</p>
                 <p>100% Tax = $</p>
@@ -52,50 +52,62 @@ export default {
         {
           name: 'Houston Colt .45s',
           players: [],
+          startingSalaryCap: 420,
         },
         {
           name: 'Brooklyn Dodgers',
           players: [],
+          startingSalaryCap: 919,
         },
         {
           name: 'Detroit Stars',
           players: [],
+          startingSalaryCap: 275,
         },
         {
           name: 'Zulu Cannibal Giants',
           players: [],
+          startingSalaryCap: 500,
         },
         {
           name: 'Boston Braves',
           players: [],
+          startingSalaryCap: 500,
         },
         {
           name: 'St. Louis Terriers',
           players: [],
+          startingSalaryCap: 132,
         },
         {
           name: 'Seattle Pilots',
           players: [],
+          startingSalaryCap: 777,
         },
         {
           name: 'Montreal Expos',
           players: [],
+          startingSalaryCap: 730,
         },
         {
           name: 'Chicago Brownbombers',
           players: [],
+          startingSalaryCap: 457,
         },
         {
           name: 'Washington Senators',
           players: [],
+          startingSalaryCap: 523,
         },
         {
           name: 'California Angels',
           players: [],
+          startingSalaryCap: 599,
         },
         {
           name: 'Atlanta BlackCrackers',
           players: [],
+          startingSalaryCap: 168,
         },
       ],
     };
