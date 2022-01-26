@@ -198,6 +198,6 @@ export default {
       this.close();
     },
   },
-  name: 'Home',
+  name: 'TeamTable',
 };
 </script>

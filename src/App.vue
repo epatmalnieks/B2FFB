@@ -8,30 +8,7 @@
       </v-tabs>
       <v-tabs-items v-model="selectedTeam">
         <v-tab-item v-for="team in teams" :key="team.name">
-          <v-simple-table dense height="500px" fixed-header>
-            <template v-slot:default>
-              <thead>
-                <tr>
-                  <th class="text-left">
-                    Position
-                  </th>
-                  <th class="text-left">
-                    Player
-                  </th>
-                  <th class="text-left">
-                    Salary
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="player in team.roster" :key="player.position">
-                  <td>{{ player.position }}</td>
-                  <td>{{ player.name }}</td>
-                  <td>{{ player.salary }}</td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
+          <team-table></team-table>
         </v-tab-item>
       </v-tabs-items>
     </v-card>
@@ -42,8 +19,12 @@
 </template>
 
 <script>
+import TeamTable from './components/TeamTable.vue';
 
 export default {
+  components: {
+    TeamTable,
+  },
   data() {
     return {
       selectedTeam: '',
