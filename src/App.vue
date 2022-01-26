@@ -44,7 +44,6 @@
 <script>
 
 export default {
-  name: 'App',
   data() {
     return {
       selectedTeam: '',
@@ -174,5 +173,6 @@ export default {
       ],
     };
   },
+  name: 'App',
 };
 </script>

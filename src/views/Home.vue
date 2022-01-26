@@ -36,7 +36,22 @@
 
 <script>
 export default {
+  created() {
+    this.initialize();
+  },
   data: () => ({
+    defaultItem: {
+      id: 0,
+      name: 'New Item',
+      position: 0,
+      salary: 0,
+    },
+    editedIndex: -1,
+    editedItem: {
+      name: '',
+      position: 0,
+      salary: 0,
+    },
     headers: [
       {
         text: 'Position',
@@ -57,23 +72,16 @@ export default {
       },
     ],
     players: [],
-    editedIndex: -1,
-    editedItem: {
-      name: '',
-      position: 0,
-      salary: 0,
-    },
-    defaultItem: {
-      id: 0,
-      name: 'New Item',
-      position: 0,
-      salary: 0,
-    },
   }),
-  created() {
-    this.initialize();
-  },
   methods: {
+    close() {
+      this.editedItem = { ...this.defaultItem };
+      this.editedIndex = -1;
+    },
+    editItem(item) {
+      this.editedIndex = this.players.indexOf(item);
+      this.editedItem = { ...item };
+    },
     initialize() {
       this.players = [
         {
@@ -182,14 +190,6 @@ export default {
           salary: 3,
         },
       ];
-    },
-    editItem(item) {
-      this.editedIndex = this.players.indexOf(item);
-      this.editedItem = { ...item };
-    },
-    close() {
-      this.editedItem = { ...this.defaultItem };
-      this.editedIndex = -1;
     },
     save() {
       if (this.editedIndex > -1) {
