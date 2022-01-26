@@ -1,11 +1,18 @@
 <template>
   <v-app>
-    <v-tabs vertical>
+    <v-tabs vertical dark background-color="primary">
       <v-tab v-for="(team, index) in teams" :key="index">
         {{ team.name }}
       </v-tab>
       <v-tab-item v-for="team in teams" :key="team.name">
-        <team-table :players="team.players"></team-table>
+        <v-row>
+          <v-col cols="7">
+
+          </v-col>
+          <v-col cols="5">
+            <team-table :players="team.players"></team-table>
+          </v-col>
+        </v-row>
       </v-tab-item>
     </v-tabs>
   </v-app>
