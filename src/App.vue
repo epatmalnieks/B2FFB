@@ -8,7 +8,7 @@
       </v-tabs>
       <v-tabs-items v-model="selectedTeam">
         <v-tab-item v-for="team in teams" :key="team.name">
-          <team-table></team-table>
+          <team-table :players="team.players"></team-table>
         </v-tab-item>
       </v-tabs-items>
     </v-card>
@@ -30,10 +30,119 @@ export default {
       selectedTeam: '',
       tab: null,
       teams: [
-        { name: 'Houston Colt .45s', roster: ' team 1 roster' },
+        {
+          name: 'Houston Colt .45s',
+          players: [
+            {
+              name: '',
+              position: 'C',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: '1B',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: '2B',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: '3B',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'SS',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'OF1',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'OF2',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'OF3',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'Util',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'SP1',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'SP2',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'RP1',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'RP2',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'P1',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'P2',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'P3',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'B1',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'B2',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'B3',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'B4',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'B5',
+              salary: 0,
+            },
+          ],
+        },
         {
           name: 'Brooklyn Dodgers',
-          roster: [
+          players: [
             {
               name: 'Salvador Perez',
               position: 'C',
