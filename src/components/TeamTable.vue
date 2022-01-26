@@ -1,7 +1,7 @@
 <template>
   <v-card class="mt-10" outlined>
-      <v-data-table :headers="headers" hide-default-footer items-per-page="-1"
-      :items="players" fixed-header height="350px">
+      <v-data-table :headers="headers" hide-default-footer :items-per-page="-1"
+      :items="players" fixed-header height="400px">
         <template v-slot:item.position="{ item }">
           <span>{{item.position}}</span>
         </template>

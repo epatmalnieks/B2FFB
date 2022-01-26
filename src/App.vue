@@ -1,20 +1,13 @@
 <template>
   <v-app>
-    <v-card>
-      <v-tabs v-model="selectedTeam" background-color="primary" dark>
-        <v-tab v-for="team in teams" :key="team.name">
-          {{ team.name }}
-        </v-tab>
-      </v-tabs>
-      <v-tabs-items v-model="selectedTeam">
-        <v-tab-item v-for="team in teams" :key="team.name">
-          <team-table :players="team.players"></team-table>
-        </v-tab-item>
-      </v-tabs-items>
-    </v-card>
-    <v-main>
-      <router-view/>
-    </v-main>
+    <v-tabs vertical>
+      <v-tab v-for="(team, index) in teams" :key="index">
+        {{ team.name }}
+      </v-tab>
+      <v-tab-item v-for="team in teams" :key="team.name">
+        <team-table :players="team.players"></team-table>
+      </v-tab-item>
+    </v-tabs>
   </v-app>
 </template>
 
