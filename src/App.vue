@@ -6,17 +6,37 @@
       </v-tab>
       <v-tab-item v-for="team in teams" :key="team.name">
         <v-row>
-          <v-col cols="7">
-
-          </v-col>
           <v-col cols="5">
             <team-table :players="team.players"></team-table>
+          </v-col>
+          <v-col cols="4">
+            <div class="d-flex justify-center align-center calculations">
+              <div>
+                <p>Starting Salary Cap = $</p>
+                <p>Salary Cap Remaining = $</p>
+                <p>Total Player Salary = $</p>
+                <p>100% Tax = $</p>
+                <p>200% Tax = $</p>
+                <p>GRAND TOTAL = $</p>
+              </div>
+            </div>
           </v-col>
         </v-row>
       </v-tab-item>
     </v-tabs>
   </v-app>
 </template>
+
+<style scoped>
+.calculations {
+  height: 500px;
+  text-align: right;
+}
+
+p {
+  font-size: 28px;
+}
+</style>
 
 <script>
 import TeamTable from './components/TeamTable.vue';
