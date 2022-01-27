@@ -13,11 +13,11 @@
             <div class="d-flex justify-center align-center calculations">
               <div>
                 <p>Starting Salary Cap = ${{ team.startingSalaryCap }}</p>
-                <p>Salary Cap Remaining = $</p>
-                <p>Total Player Salary = $</p>
-                <p>100% Tax = $</p>
-                <p>200% Tax = $</p>
-                <p>GRAND TOTAL = $</p>
+                <p>Total Player Salary = ${{ getTotalPlayerSalary(team.players) }}</p>
+                <p>Salary Cap Remaining = ${{ getSalaryCapRemaining(team) }}</p>
+                <p>100% Tax = ${{ get100Tax() }}</p>
+                <p>200% Tax = ${{ get200Tax() }}</p>
+                <p>GRAND TOTAL = ${{ getGrandTotal() }}</p>
               </div>
             </div>
           </v-col>
@@ -112,10 +112,27 @@ export default {
       ],
     };
   },
+  methods: {
+    get100Tax() {
+
+    },
+    get200Tax() {
+
+    },
+    getGrandTotal() {
+
+    },
+    getSalaryCapRemaining(team) {
+      return team.startingSalaryCap - this.getTotalPlayerSalary(team.players);
+    },
+    getTotalPlayerSalary(players) {
+      return players.map((player) => parseInt(player.salary, 10)).reduce((prev, curr) => prev + curr, 0);
+    },
+  },
   mounted() {
     this.teams = this.teams.map((team) => {
       const localStorage = JSON.parse(window.localStorage.getItem(team.name));
-
+      console.log('erik', localStorage);
       if (localStorage) {
         team.players = localStorage;
       } else {
