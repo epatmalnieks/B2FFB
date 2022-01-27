@@ -7,7 +7,7 @@
       <v-tab-item v-for="team in teams" :key="team.name">
         <v-row>
           <v-col cols="5">
-            <team-table :players="team.players"></team-table>
+            <team-table :team="team"></team-table>
           </v-col>
           <v-col cols="4">
             <div class="d-flex justify-center align-center calculations">
@@ -113,10 +113,12 @@ export default {
     };
   },
   mounted() {
-    if (false) {
-      console.log('erik');
-    } else {
-      this.teams = this.teams.map((team) => {
+    this.teams = this.teams.map((team) => {
+      const localStorage = JSON.parse(window.localStorage.getItem(team.name));
+
+      if (localStorage) {
+        team.players = localStorage;
+      } else {
         team.players = [
           {
             name: '',
@@ -224,9 +226,9 @@ export default {
             salary: 0,
           },
         ];
-        return team;
-      });
-    }
+      }
+      return team;
+    });
   },
   name: 'App',
 };

@@ -1,6 +1,6 @@
 <template>
     <v-data-table dense :headers="headers" hide-default-footer :items-per-page="-1"
-    :items="players" fixed-header>
+    :items="team.players" fixed-header>
       <template v-slot:item.position="{ item }">
         <span>{{item.position}}</span>
       </template>
@@ -19,7 +19,7 @@
           <v-icon color="red" class="mr-3" @click="close">
             mdi-window-close
           </v-icon>
-          <v-icon color="green"  @click="save">
+          <v-icon color="green" @click="save">
             mdi-content-save
           </v-icon>
         </div>
@@ -73,21 +73,22 @@ export default {
       this.editedIndex = -1;
     },
     editItem(item) {
-      this.editedIndex = this.players.indexOf(item);
+      this.editedIndex = this.team.players.indexOf(item);
       this.editedItem = { ...item };
     },
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.players[this.editedIndex], this.editedItem);
+        Object.assign(this.team.players[this.editedIndex], this.editedItem);
       }
+      window.localStorage.setItem(this.team.name, JSON.stringify(this.team.players));
       this.close();
     },
   },
   name: 'TeamTable',
   props: {
-    players: {
+    team: {
       required: true,
-      type: Array,
+      type: Object,
     },
   },
 };
