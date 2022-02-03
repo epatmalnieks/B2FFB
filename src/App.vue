@@ -23,6 +23,10 @@
           </v-col>
         </v-row>
       </v-tab-item>
+      <v-spacer></v-spacer>
+      <div class="d-flex justify-center mb-6">
+        <v-btn width="100px" color="error" @click="clearClicked">Clear</v-btn>
+      </div>
     </v-tabs>
   </v-app>
 </template>
@@ -117,6 +121,12 @@ export default {
     };
   },
   methods: {
+    clearClicked() {
+      if (window.confirm('Are you sure you want to clear everything?')) {
+        window.localStorage.clear();
+        this.init();
+      }
+    },
     formatPrice(value) {
       const formatter = new Intl.NumberFormat('en-US', {
         currency: 'USD',
@@ -149,124 +159,127 @@ export default {
     getTotalPlayerSalary(players) {
       return players.map((player) => parseInt(player.salary, 10)).reduce((prev, curr) => prev + curr, 0);
     },
+    init() {
+      this.teams = this.teams.map((team) => {
+        const localStorage = JSON.parse(window.localStorage.getItem(team.name));
+
+        if (localStorage) {
+          team.players = localStorage;
+        } else {
+          team.players = [
+            {
+              name: '',
+              position: 'C',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: '1B',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: '2B',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: '3B',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'SS',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'OF1',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'OF2',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'OF3',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'Util',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'SP1',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'SP2',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'RP1',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'RP2',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'P1',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'P2',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'P3',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'B1',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'B2',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'B3',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'B4',
+              salary: 0,
+            },
+            {
+              name: '',
+              position: 'B5',
+              salary: 0,
+            },
+          ];
+        }
+        return team;
+      });
+    },
   },
   mounted() {
-    this.teams = this.teams.map((team) => {
-      const localStorage = JSON.parse(window.localStorage.getItem(team.name));
-      console.log('erik', localStorage);
-      if (localStorage) {
-        team.players = localStorage;
-      } else {
-        team.players = [
-          {
-            name: '',
-            position: 'C',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: '1B',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: '2B',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: '3B',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'SS',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'OF1',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'OF2',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'OF3',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'Util',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'SP1',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'SP2',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'RP1',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'RP2',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'P1',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'P2',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'P3',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'B1',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'B2',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'B3',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'B4',
-            salary: 0,
-          },
-          {
-            name: '',
-            position: 'B5',
-            salary: 0,
-          },
-        ];
-      }
-      return team;
-    });
+    this.init();
   },
   name: 'App',
 };
