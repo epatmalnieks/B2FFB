@@ -12,12 +12,12 @@
           <v-col cols="4">
             <div class="d-flex justify-center align-center calculations">
               <div>
-                <p>Starting Salary Cap = ${{ team.startingSalaryCap }}</p>
-                <p>Total Player Salary = ${{ getTotalPlayerSalary(team.players) }}</p>
-                <p>Salary Cap Remaining = ${{ getSalaryCapRemaining(team) }}</p>
-                <p>100% Tax = ${{ get100Tax() }}</p>
-                <p>200% Tax = ${{ get200Tax() }}</p>
-                <p>GRAND TOTAL = ${{ getGrandTotal() }}</p>
+                <p>Starting Salary Cap = {{ formatPrice(team.startingSalaryCap) }}</p>
+                <p>Total Player Salary = {{ formatPrice(getTotalPlayerSalary(team.players)) }}</p>
+                <p>Salary Cap Remaining = <span :class="{'red-text': getSalaryCapRemaining(team) < 0}">{{ formatPrice(getSalaryCapRemaining(team)) }}</span></p>
+                <p>100% Tax = {{ formatPrice(get100Tax(team)) }}</p>
+                <p>200% Tax = {{ formatPrice(get200Tax(team)) }}</p>
+                <p>GRAND TOTAL = {{ formatPrice(getGrandTotal(team)) }}</p>
               </div>
             </div>
           </v-col>
@@ -35,6 +35,10 @@
 
 p {
   font-size: 28px;
+}
+
+.red-text {
+  color: red;
 }
 </style>
 
@@ -113,14 +117,31 @@ export default {
     };
   },
   methods: {
-    get100Tax() {
-
+    formatPrice(value) {
+      const formatter = new Intl.NumberFormat('en-US', {
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        style: 'currency',
+      });
+      return formatter.format(value);
     },
-    get200Tax() {
-
+    get100Tax(team) {
+      if (this.getSalaryCapRemaining(team) < 0) {
+        const taxableAmount = this.getTotalPlayerSalary(team.players) - team.startingSalaryCap;
+        return taxableAmount > 100 ? 100 : taxableAmount;
+      }
+      return 0;
     },
-    getGrandTotal() {
-
+    get200Tax(team) {
+      if (this.getSalaryCapRemaining(team) < -100) {
+        let taxableAmount = this.getTotalPlayerSalary(team.players) - team.startingSalaryCap;
+        taxableAmount -= 100;
+        return taxableAmount * 2;
+      }
+      return 0;
+    },
+    getGrandTotal(team) {
+      return this.getTotalPlayerSalary(team.players) + this.get100Tax(team) + this.get200Tax(team);
     },
     getSalaryCapRemaining(team) {
       return team.startingSalaryCap - this.getTotalPlayerSalary(team.players);
