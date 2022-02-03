@@ -2,7 +2,8 @@
   <v-app>
     <v-tabs vertical dark background-color="primary">
       <v-tab v-for="(team, index) in teams" :key="index">
-        {{ team.name }}
+        <v-img contain height="30" width="30" :src="getLogo(team.logo)"></v-img>
+        <span class="team-name">{{ team.name }}</span>
       </v-tab>
       <v-tab-item v-for="team in teams" :key="team.name">
         <v-row>
@@ -32,17 +33,23 @@
 </template>
 
 <style scoped>
+p {
+  font-size: 28px;
+}
+
 .calculations {
   height: 500px;
   text-align: right;
 }
 
-p {
-  font-size: 28px;
-}
-
 .red-text {
   color: red;
+}
+
+.team-name {
+  margin-left: 8px;
+  min-width: 205px;
+  text-align: left;
 }
 </style>
 
@@ -58,61 +65,73 @@ export default {
       selectedTeam: '',
       teams: [
         {
+          logo: 'colt45s',
           name: 'Houston Colt .45s',
           players: [],
           startingSalaryCap: 425,
         },
         {
+          logo: 'dodgers',
           name: 'Brooklyn Dodgers',
           players: [],
           startingSalaryCap: 127,
         },
         {
+          logo: 'stars',
           name: 'Detroit Stars',
           players: [],
           startingSalaryCap: 500,
         },
         {
+          logo: 'giants',
           name: 'Zulu Cannibal Giants',
           players: [],
           startingSalaryCap: 500,
         },
         {
+          logo: 'braves',
           name: 'Boston Braves',
           players: [],
           startingSalaryCap: 500,
         },
         {
+          logo: 'terriers',
           name: 'St. Louis Terriers',
           players: [],
           startingSalaryCap: 371,
         },
         {
+          logo: 'pilots',
           name: 'Seattle Pilots',
           players: [],
           startingSalaryCap: 430,
         },
         {
+          logo: 'expos',
           name: 'Montreal Expos',
           players: [],
           startingSalaryCap: 500,
         },
         {
+          logo: 'brownbombers',
           name: 'Chicago Brownbombers',
           players: [],
           startingSalaryCap: 500,
         },
         {
+          logo: 'senators',
           name: 'Washington Senators',
           players: [],
           startingSalaryCap: 500,
         },
         {
+          logo: 'angels',
           name: 'California Angels',
           players: [],
           startingSalaryCap: 500,
         },
         {
+          logo: 'blackcrackers',
           name: 'Atlanta BlackCrackers',
           players: [],
           startingSalaryCap: 500,
@@ -152,6 +171,9 @@ export default {
     },
     getGrandTotal(team) {
       return this.getTotalPlayerSalary(team.players) + this.get100Tax(team) + this.get200Tax(team);
+    },
+    getLogo(name) {
+      return require(`./assets/${name}.jpg`);
     },
     getSalaryCapRemaining(team) {
       return team.startingSalaryCap - this.getTotalPlayerSalary(team.players);

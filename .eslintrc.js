@@ -11,6 +11,8 @@ module.exports = {
     parser: 'babel-eslint',
   },
   rules: {
+    'global-require': 0,
+    'import/no-dynamic-require': 0,
     'max-len': 0,
     'no-alert': 0,
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
