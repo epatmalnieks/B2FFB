@@ -11,21 +11,22 @@
             <team-table :team="team"></team-table>
           </v-col>
           <v-col cols="4">
-            <div class="d-flex justify-center align-center calculations">
-              <div>
+            <v-img contain height="200" class="mt-4" :src="getLogo(team.logo)"></v-img>
+            <p class="d-flex justify-center">{{ team.owner }}</p>
+            <div class="d-flex justify-center mt-6 calculations">
+              <v-card elevation="15" outlined class="pa-4">
                 <p>Starting Salary Cap = {{ formatPrice(team.startingSalaryCap) }}</p>
                 <p>Total Player Salary = {{ formatPrice(getTotalPlayerSalary(team.players)) }}</p>
                 <p>Salary Cap Remaining = <span :class="{'red-text': getSalaryCapRemaining(team) < 0}">{{ formatPrice(getSalaryCapRemaining(team)) }}</span></p>
                 <p>100% Tax = {{ formatPrice(get100Tax(team)) }}</p>
                 <p>200% Tax = {{ formatPrice(get200Tax(team)) }}</p>
                 <p>GRAND TOTAL = {{ formatPrice(getGrandTotal(team)) }}</p>
-              </div>
+              </v-card>
             </div>
           </v-col>
         </v-row>
       </v-tab-item>
-      <v-spacer></v-spacer>
-      <div class="d-flex justify-center mb-6">
+      <div class="d-flex justify-center mt-16">
         <v-btn width="100px" color="error" @click="clearClicked">Clear</v-btn>
       </div>
     </v-tabs>
@@ -38,7 +39,6 @@ p {
 }
 
 .calculations {
-  height: 500px;
   text-align: right;
 }
 
@@ -65,74 +65,86 @@ export default {
       selectedTeam: '',
       teams: [
         {
-          logo: 'colt45s',
-          name: 'Houston Colt .45s',
-          players: [],
-          startingSalaryCap: 425,
-        },
-        {
           logo: 'dodgers',
           name: 'Brooklyn Dodgers',
+          owner: 'Erik',
           players: [],
           startingSalaryCap: 127,
         },
         {
+          logo: 'colt45s',
+          name: 'Houston Colt .45s',
+          owner: 'Adam',
+          players: [],
+          startingSalaryCap: 425,
+        },
+        {
           logo: 'stars',
           name: 'Detroit Stars',
+          owner: 'Chris',
           players: [],
           startingSalaryCap: 500,
         },
         {
           logo: 'giants',
           name: 'Zulu Cannibal Giants',
+          owner: 'Bob',
           players: [],
           startingSalaryCap: 500,
         },
         {
           logo: 'braves',
           name: 'Boston Braves',
+          owner: 'Dave/Tyler',
           players: [],
           startingSalaryCap: 500,
         },
         {
           logo: 'terriers',
           name: 'St. Louis Terriers',
+          owner: 'Chet',
           players: [],
           startingSalaryCap: 371,
         },
         {
           logo: 'pilots',
           name: 'Seattle Pilots',
+          owner: 'Jay',
           players: [],
           startingSalaryCap: 430,
         },
         {
           logo: 'expos',
           name: 'Montreal Expos',
+          owner: 'Tom',
           players: [],
           startingSalaryCap: 500,
         },
         {
           logo: 'brownbombers',
           name: 'Chicago Brownbombers',
+          owner: 'Gabe',
           players: [],
           startingSalaryCap: 500,
         },
         {
           logo: 'senators',
           name: 'Washington Senators',
+          owner: 'Justin',
           players: [],
           startingSalaryCap: 500,
         },
         {
           logo: 'angels',
           name: 'California Angels',
+          owner: 'Victor',
           players: [],
           startingSalaryCap: 500,
         },
         {
           logo: 'blackcrackers',
           name: 'Atlanta BlackCrackers',
+          owner: 'Bill',
           players: [],
           startingSalaryCap: 500,
         },
