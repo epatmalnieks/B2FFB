@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-tabs vertical dark background-color="primary">
-      <v-tab v-for="(team, index) in teams" :key="index">
+      <v-tab v-for="(team, index) in teams" :key="index" :class="{'division-divider': index === 3 || index === 7}">
         <v-img contain height="30" width="30" :src="getLogo(team.logo)"></v-img>
         <span class="team-name">{{ team.name }}</span>
       </v-tab>
@@ -10,17 +10,17 @@
           <v-col cols="5">
             <team-table :team="team"></team-table>
           </v-col>
-          <v-col cols="4">
+          <v-col cols="6">
             <v-img contain height="200" class="mt-4" :src="getLogo(team.logo)"></v-img>
             <p class="d-flex justify-center">{{ team.owner }}</p>
             <div class="d-flex justify-center mt-6 calculations">
               <v-card elevation="15" outlined class="pa-4">
-                <p>Starting Salary Cap = {{ formatPrice(team.startingSalaryCap) }}</p>
-                <p>Total Player Salary = {{ formatPrice(getTotalPlayerSalary(team.players)) }}</p>
-                <p>Salary Cap Remaining = <span :class="{'red-text': getSalaryCapRemaining(team) < 0}">{{ formatPrice(getSalaryCapRemaining(team)) }}</span></p>
-                <p>100% Tax = {{ formatPrice(get100Tax(team)) }}</p>
-                <p>200% Tax = {{ formatPrice(get200Tax(team)) }}</p>
-                <p>GRAND TOTAL = {{ formatPrice(getGrandTotal(team)) }}</p>
+                <p class="mb-2">Starting Salary Cap = {{ formatPrice(team.startingSalaryCap) }}</p>
+                <p class="mb-2">Total Player Salary = {{ formatPrice(getTotalPlayerSalary(team.players)) }}</p>
+                <p class="mb-2">Salary Cap Remaining = <span :class="{'red--text': getSalaryCapRemaining(team) < 0}">{{ formatPrice(getSalaryCapRemaining(team)) }}</span></p>
+                <p class="mb-2">100% Tax = {{ formatPrice(get100Tax(team)) }}</p>
+                <p class="mb-1">200% Tax = {{ formatPrice(get200Tax(team)) }}</p>
+                <p class="grand-total pt-1">GRAND TOTAL = {{ formatPrice(getGrandTotal(team)) }}</p>
               </v-card>
             </div>
           </v-col>
@@ -42,8 +42,12 @@ p {
   text-align: right;
 }
 
-.red-text {
-  color: red;
+.division-divider {
+  border-bottom: 1px solid white;
+}
+
+.grand-total {
+  border-top: 3px solid black;
 }
 
 .team-name {
