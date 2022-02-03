@@ -5,12 +5,12 @@
         <span>{{item.position}}</span>
       </template>
       <template v-slot:item.name="{ item }">
-        <v-text-field v-model="editedItem.name" :hide-details="true"
+        <v-text-field v-on:keyup.enter="save" v-model="editedItem.name" :hide-details="true"
           dense single-line v-if="item.position === editedItem.position"></v-text-field>
         <span v-else>{{item.name}}</span>
       </template>
       <template v-slot:item.salary="{ item }">
-        <v-text-field type="number" v-on:keyup.enter="save" v-model="editedItem.salary" :hide-details="true"
+        <v-text-field type="number" min="0" v-on:keyup.enter="save" v-model="editedItem.salary" :hide-details="true"
           dense single-line v-if="item.position === editedItem.position"></v-text-field>
         <span v-else>{{item.salary}}</span>
       </template>
@@ -78,6 +78,9 @@ export default {
     },
     save() {
       if (this.editedIndex > -1) {
+        if (this.editedItem.salary === '') {
+          this.editedItem.salary = 0;
+        }
         Object.assign(this.team.players[this.editedIndex], this.editedItem);
       }
       window.localStorage.setItem(this.team.name, JSON.stringify(this.team.players));
