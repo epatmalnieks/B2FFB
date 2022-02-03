@@ -10,7 +10,7 @@
         <span v-else>{{item.name}}</span>
       </template>
       <template v-slot:item.salary="{ item }">
-        <v-text-field v-model="editedItem.salary" :hide-details="true"
+        <v-text-field type="number" v-on:keyup.enter="save" v-model="editedItem.salary" :hide-details="true"
           dense single-line v-if="item.position === editedItem.position"></v-text-field>
         <span v-else>{{item.salary}}</span>
       </template>
