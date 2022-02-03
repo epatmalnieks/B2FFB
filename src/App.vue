@@ -60,17 +60,17 @@ export default {
         {
           name: 'Houston Colt .45s',
           players: [],
-          startingSalaryCap: 420,
+          startingSalaryCap: 425,
         },
         {
           name: 'Brooklyn Dodgers',
           players: [],
-          startingSalaryCap: 919,
+          startingSalaryCap: 127,
         },
         {
           name: 'Detroit Stars',
           players: [],
-          startingSalaryCap: 275,
+          startingSalaryCap: 500,
         },
         {
           name: 'Zulu Cannibal Giants',
@@ -85,37 +85,37 @@ export default {
         {
           name: 'St. Louis Terriers',
           players: [],
-          startingSalaryCap: 132,
+          startingSalaryCap: 371,
         },
         {
           name: 'Seattle Pilots',
           players: [],
-          startingSalaryCap: 777,
+          startingSalaryCap: 430,
         },
         {
           name: 'Montreal Expos',
           players: [],
-          startingSalaryCap: 730,
+          startingSalaryCap: 500,
         },
         {
           name: 'Chicago Brownbombers',
           players: [],
-          startingSalaryCap: 457,
+          startingSalaryCap: 500,
         },
         {
           name: 'Washington Senators',
           players: [],
-          startingSalaryCap: 523,
+          startingSalaryCap: 500,
         },
         {
           name: 'California Angels',
           players: [],
-          startingSalaryCap: 599,
+          startingSalaryCap: 500,
         },
         {
           name: 'Atlanta BlackCrackers',
           players: [],
-          startingSalaryCap: 168,
+          startingSalaryCap: 500,
         },
       ],
     };
